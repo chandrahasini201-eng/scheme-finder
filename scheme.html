@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Scheme Information</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:Poppins;
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:white;
+padding:20px;
+}
+
+.container{
+max-width:800px;
+margin:auto;
+background:rgba(255,255,255,0.08);
+padding:30px;
+border-radius:20px;
+backdrop-filter:blur(15px);
+box-shadow:0 0 30px rgba(0,0,0,0.5);
+}
+
+.title{
+font-size:28px;
+font-weight:600;
+margin-bottom:10px;
+}
+
+.description{
+margin-bottom:20px;
+opacity:0.9;
+}
+
+.section{
+margin-top:20px;
+}
+
+.section h3{
+color:#00c6ff;
+margin-bottom:8px;
+}
+
+ul{
+padding-left:20px;
+line-height:1.6;
+}
+
+button{
+margin-top:30px;
+padding:12px 20px;
+border:none;
+border-radius:10px;
+background:gray;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+background:#555;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="title" id="title"></div>
+
+<div class="description" id="description"></div>
+
+
+<div class="section">
+<h3>Eligibility Criteria</h3>
+<ul id="eligibility"></ul>
+</div>
+
+
+<div class="section">
+<h3>Benefits</h3>
+<ul id="benefits"></ul>
+</div>
+
+
+<div class="section">
+<h3>Documents You Need 📄</h3>
+<ul id="documents"></ul>
+</div>
+
+
+<button onclick="goBack()">← Back to Schemes</button>
+
+</div>
+
+
+<script>
+
+const schemes = {
+
+"Post Matric Scholarship":{
+
+description:
+"This scheme helps students from low-income families continue higher education by providing financial support.",
+
+eligibility:[
+"Must be a college student",
+"Family income below ₹2 lakh",
+"Indian citizen"
+],
+
+benefits:[
+"Up to ₹50,000 per year",
+"Fee reimbursement"
+],
+
+documents:[
+"Aadhaar Card",
+"Income Certificate",
+"Student ID",
+"Bank Passbook",
+"Previous marksheet"
+]
+
+},
+
+"Central Sector Scholarship":{
+
+description:
+"This scholarship supports academically strong students to pursue higher education.",
+
+eligibility:[
+"Above 80% in 12th",
+"Currently studying in college"
+],
+
+benefits:[
+"₹10,000–₹20,000 yearly support"
+],
+
+documents:[
+"Aadhaar Card",
+"12th marksheet",
+"College admission proof",
+"Bank details"
+]
+
+},
+
+"Free Laptop Scheme":{
+
+description:
+"This scheme provides free laptops to students to support digital education.",
+
+eligibility:[
+"Must be a student",
+"Enrolled in recognized institution"
+],
+
+benefits:[
+"Free laptop"
+],
+
+documents:[
+"Aadhaar Card",
+"Student ID",
+"Admission proof"
+]
+
+}
+
+}
+
+
+const schemeName = localStorage.getItem("schemeName")
+
+const scheme = schemes[schemeName]
+
+document.getElementById("title").innerText = schemeName
+document.getElementById("description").innerText = scheme.description
+
+
+function loadList(id, items){
+
+items.forEach(item=>{
+
+const li=document.createElement("li")
+li.innerText=item
+document.getElementById(id).appendChild(li)
+
+})
+
+}
+
+loadList("eligibility", scheme.eligibility)
+loadList("benefits", scheme.benefits)
+loadList("documents", scheme.documents)
+
+
+function goBack(){
+
+window.location.href="dashboard.html"
+
+}
+
+</script>
+
+</body>
+</html>
